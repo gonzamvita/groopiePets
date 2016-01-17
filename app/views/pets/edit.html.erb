@@ -1,17 +1,1 @@
-<%= form_for @pet do |form| %>
-  <div class="form">
-    <%= form.label :name, "Name" %>  <br />
-    <%= form.text_field :name %>
-
-    <%= form.label :breed, "Breed" %>  <br />
-    <%= form.text_field :breed %>
-
-    <%= form.label :age, "Age" %>  <br />
-    <%= form.text_field :age %>
-
-    <%= form.label :photo, "Photo" %>  <br />
-    <%= form.file_field :photo %>
-    <br><br>
-    <%= form.submit %>
- </div>
- <% end %>
+<%= render 'pet_form' %>

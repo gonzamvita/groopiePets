@@ -1,8 +1,9 @@
 <div>
+  <!-- Pets list -->
   <table>
     <thead>
       <tr>
-          <th data-field="id">Pet Name</th>
+        <th data-field="id">Pet Name</th>
       </tr>
     </thead>
 
@@ -10,7 +11,9 @@
       <% @pets.each do |pet| %>
         <tr>
           <td>
-            <a class="js-get-detail" data-pet-id="<%= pet.id %>" href="#" ><%= pet.name %></a>
+            <a class="js-get-detail" data-pet-id="<%= pet.id %>" href="#" >
+              <%= pet.name %>
+            </a>
           </td>
           <td>
             <%= link_to "Detail", pet_path(pet.id)%>
@@ -26,7 +29,7 @@
     </tbody>
   </table>
 
-  <!-- Modal Structure -->
+  <!-- Modal Detal Window -->
   <div id="petDetailModal" class="modal">
     <div class="modal-content">
       <h4 class="js-pet-name"></h4>
@@ -34,7 +37,9 @@
       <img id="js-pet-img" class="responsive-img" />
     </div>
     <div class="modal-footer">
-      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+      <a href="#!"class="modal-action modal-close waves-effect waves-green btn-flat">
+        Close
+      </a>
     </div>
   </div>
 </div>

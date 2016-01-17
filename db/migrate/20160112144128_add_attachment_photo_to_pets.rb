@@ -1,6 +1,6 @@
 class AddAttachmentPhotoToPets < ActiveRecord::Migration
   def self.up
-    change_table :pets do |t|
+    change_table(:pets) do |t|
       t.attachment :photo
     end
   end

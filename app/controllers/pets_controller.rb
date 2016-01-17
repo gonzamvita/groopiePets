@@ -21,10 +21,12 @@ class PetsController < ApplicationController
   def create
     user = User.find(current_user)
     @pet = Pet.new(entry_params)
+
     if user.pets << @pet
-      redirect_to root_path, flash: { success: "Pet has been saved successfully."}
+      redirect_to root_path,
+                  flash: { success: "Pet has been saved successfully."}
     else
-      render 'new', flash: { danger: "Pet has not been saved."}
+      render 'new', flash: { error: "Pet has not been saved."}
     end
   end
 
@@ -35,9 +37,10 @@ class PetsController < ApplicationController
   def update
     @pet = Pet.find(params[:id])
     if @pet.update_attributes(entry_params)
-       redirect_to root_path, :flash => { :success => "success" }
+       redirect_to root_path,
+                   flash: { :success => "Pet has been updated successfully." }
     else
-      redirect_to root_path, :flash => { :error => "shit" }
+      redirect_to root_path, :flash => { :error => "Pet has not been updated." }
     end
   end
 
@@ -46,9 +49,10 @@ class PetsController < ApplicationController
     user = User.find(pet.user_id)
     if user == current_user
       pet.destroy
-      redirect_to root_path, flash: { success: "Pet has been deleted successfully."}
+      redirect_to root_path,
+                  flash: { success: "Pet has been deleted successfully."}
     else
-      redirect_to root_path, :flash => { :error => "Only owner can delete its pet" }
+      redirect_to root_path, flash: { error: "Only owner can delete its pet" }
     end
   end
 
