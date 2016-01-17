@@ -32,6 +32,10 @@ class PetsController < ApplicationController
 
   def edit
     @pet = Pet.find(params[:id])
+    user = User.find(@pet.user_id)
+    if user != current_user
+      redirect_to root_path, flash: { error: "Only owner can delete its pet" }
+    end
   end
 
   def update
