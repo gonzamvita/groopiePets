@@ -2,7 +2,7 @@ class Pet < ActiveRecord::Base
   belongs_to :user
 
   validates :name, presence: true
-  validates :age, presence: true
+  validates :age, presence: true, numericality: true
   validates :breed, presence: true
 
   has_attached_file :photo,
