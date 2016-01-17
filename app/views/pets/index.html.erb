@@ -1,9 +1,40 @@
 <div>
-  <ul>
+  <table>
+    <thead>
+      <tr>
+          <th data-field="id">Pet Name</th>
+      </tr>
+    </thead>
+
+    <tbody>
       <% @pets.each do |pet| %>
-        <li>
-          <%= link_to "#{pet.name}", pet_path(pet.id)%>
-        </li>
+        <tr>
+          <td>
+            <a class="js-get-detail" data-pet-id="<%= pet.id %>" href="#" ><%= pet.name %></a>
+          </td>
+          <td>
+            <%= link_to "Detail", pet_path(pet.id)%>
+          </td>
+          <td>
+            <%= link_to "Edit", edit_pet_path(pet) %>
+          </td>
+          <td>
+            <%= link_to "Delete", pet_path(pet.id), method: :delete %>
+          </td>
+        </tr>
       <% end %>
-  </ul>
+    </tbody>
+  </table>
+
+  <!-- Modal Structure -->
+  <div id="petDetailModal" class="modal">
+    <div class="modal-content">
+      <h4 class="js-pet-name"></h4>
+      <p class="js-pet-description"></p>
+      <img id="js-pet-img" class="responsive-img" />
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+  </div>
 </div>

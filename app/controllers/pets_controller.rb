@@ -1,5 +1,6 @@
 class PetsController < ApplicationController
   before_action :authenticate_user!
+  respond_to :json
 
   def index
     @pets = Pet.all
@@ -7,6 +8,10 @@ class PetsController < ApplicationController
 
   def show
     @pet = Pet.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.json { render json: @pet.to_json(methods: :photo_url)}
+    end
   end
 
   def new
@@ -14,18 +19,37 @@ class PetsController < ApplicationController
   end
 
   def create
+    user = User.find(current_user)
     @pet = Pet.new(entry_params)
-
-    if @pet.save
+    if user.pets << @pet
       redirect_to root_path, flash: { success: "Pet has been saved successfully."}
     else
-      render 'new', flash: { success: "Pet has not been saved."}
+      render 'new', flash: { danger: "Pet has not been saved."}
+    end
+  end
+
+  def edit
+    @pet = Pet.find(params[:id])
+  end
+
+  def update
+    @pet = Pet.find(params[:id])
+    if @pet.update_attributes(entry_params)
+       redirect_to root_path, :flash => { :success => "success" }
+    else
+      redirect_to root_path, :flash => { :error => "shit" }
     end
   end
 
   def destroy
-    @pet.destroy
-    redirect_to root_path, flash: { success: "Concert has been deleted successfully."}
+    pet = Pet.find(params[:id])
+    user = User.find(pet.user_id)
+    if user == current_user
+      pet.destroy
+      redirect_to root_path, flash: { success: "Pet has been deleted successfully."}
+    else
+      redirect_to root_path, :flash => { :error => "Only owner can delete its pet" }
+    end
   end
 
   private

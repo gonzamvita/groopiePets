@@ -1,17 +1,9 @@
-<div class="row">
-  <div class="col s12 m7">
-    <div class="card">
-      <div class="card-image">
-        <%= image_tag @pet.photo.url %>
-        <span class="card-title"><%= @pet.name %></span>
-      </div>
-      <div class="card-content">
-        <p>I am a very simple card. I am good at containing small bits of information.
-        I am convenient because I require little markup to use effectively.</p>
-      </div>
-      <div class="card-action">
-        <a href="#">This is a link</a>
-      </div>
-    </div>
-  </div>
+<div class="pet-detail">
+  <p class="flow-text center">
+    Name: <%= @pet.name %><br>
+    Breed: <%= @pet.breed %><br>
+    Age: <%= @pet.age %> years
+  </p>
+
+  <img class="materialboxed responsive-img center" src="<%= @pet.photo.url %>">
 </div>

@@ -38,6 +38,8 @@ group :development, :test do
   gem 'byebug'
   # RSpec for test purposes
   gem 'rspec-rails', '~> 3.0'
+  # Pry
+  gem 'pry-rails'
 end
 
 group :development do
