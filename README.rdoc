@@ -3,8 +3,6 @@
 Web application that allows user to register their pets and see the pets of
 other users.
 
-Things you may want to cover:
-
 * Ruby 2.2.1 / Rails 4.2.5
 
 * Gems: Devise, Paperclip, RSpec
