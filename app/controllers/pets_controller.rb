@@ -19,10 +19,9 @@ class PetsController < ApplicationController
   end
 
   def create
-    user = User.find(current_user)
-    @pet = Pet.new(entry_params)
+    @pet = current_user.pets.new(entry_params)
 
-    if user.pets << @pet
+    if @pet.save
       redirect_to root_path,
                   flash: { success: "Pet has been saved successfully."}
     else
